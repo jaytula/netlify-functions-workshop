@@ -8,7 +8,7 @@ exports.handler = (event, context, callback) => {
   */
   const response = {
     statusCode: 200,
-    body: JSON.stringify(event);
+    body: JSON.stringify(event)
   }
   return callback(null, response)
 }
