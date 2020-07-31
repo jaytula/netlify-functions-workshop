@@ -38,6 +38,6 @@ exports.handler = async (event, context) => {
 
   return {
     'Content-Type': 'text/html',
-    body: generateHtml(event.path)
+    body: generateHtml((event.path))
   }
 }

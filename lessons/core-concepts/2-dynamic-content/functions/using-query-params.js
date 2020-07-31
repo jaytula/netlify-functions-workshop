@@ -37,6 +37,6 @@ exports.handler = async (event, context) => {
   console.log('event.queryStringParameters', event.queryStringParameters)
   return {
     'Content-Type': 'text/html',
-    body: generateHtml(event.queryStringParameters)
+    body: generateHtml(JSON.stringify(event.queryStringParameters))
   }
 }
