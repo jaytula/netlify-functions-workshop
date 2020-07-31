@@ -9,15 +9,12 @@
 exports.handler = async (event, context) => {
   const response = {
     statusCode: 200,
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
-      headers: {
-        /* Required for CORS support to work */
-        "Access-Control-Allow-Origin" : "*",
-        /* Required for cookies, authorization headers with HTTPS */
-        "Access-Control-Allow-Credentials" : true
-      },
-      message: 'return env variable here'
+      message: process.env.MY_ENV_VAR
     }),
   }
-  return callback(null, response)
+  return response;
 }
