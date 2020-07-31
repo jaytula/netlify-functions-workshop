@@ -21,6 +21,23 @@
     Finally remember to set the headers of the response as `'Content-Type': 'text/html'` to return HTML instead of the default `json`
  */
 
+const generateHtml = (name = 'there') => {
+  return `
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+    </head>
+    <body>
+      <h1>Hi ${name}</h1>
+    </body>
+  </html>`
+}
+
 exports.handler = async (event, context) => {
   console.log('event.path', event.path)
+
+  return {
+    'Content-Type': 'text/html',
+    body: generateHtml(event.path)
+  }
 }
