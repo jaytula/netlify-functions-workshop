@@ -21,7 +21,7 @@
     Finally remember to set the headers of the response as `'Content-Type': 'text/html'` to return HTML instead of the default `json`
  */
 
-const generateHtml = (name = 'there') => {
+const generateHtml = (name = "there") => {
   return `
   <html lang="en">
     <head>
@@ -30,14 +30,16 @@ const generateHtml = (name = 'there') => {
     <body>
       <h1>Hi ${name}</h1>
     </body>
-  </html>`
-}
+  </html>`;
+};
 
 exports.handler = async (event, context) => {
-  console.log('event.path', event.path)
+  const path = event.path.replace(/\/\.netlify\/functions\/[^/]*\//, '');
+  const pathParts = path.split('/');
 
   return {
-    'Content-Type': 'text/html',
-    body: generateHtml((event.path))
-  }
-}
+    statusCode: 200,
+    headers: { "Content-Type": "text/html" },
+    body: generateHtml(pathParts[0]),
+  };
+};

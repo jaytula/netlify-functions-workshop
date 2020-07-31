@@ -35,8 +35,10 @@ const generateHtml = (name = 'there') => {
 
 exports.handler = async (event, context) => {
   console.log('event.queryStringParameters', event.queryStringParameters)
+  const name = 'name' in event.queryStringParameters ? event.queryStringParameters.name : 'friend';
   return {
-    'Content-Type': 'text/html',
-    body: generateHtml(JSON.stringify(event.queryStringParameters))
+    statusCode: 200,
+    headers: {'Content-Type': 'text/html'},
+    body: generateHtml(name)
   }
 }
