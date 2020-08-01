@@ -14,6 +14,7 @@ exports.handler = async (event, context) => {
     statusCode: 200,
     body: JSON.stringify({
       message: `Super secret`,
+      claims: context.clientContext.user
     })
   }
 }
