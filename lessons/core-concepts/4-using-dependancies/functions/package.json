@@ -4,5 +4,8 @@
   "description": "",
   "keywords": [],
   "author": "David Wells <hello@davidwells.io> (https://davidwells.io/)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "faker": "^4.1.0"
+  }
 }
