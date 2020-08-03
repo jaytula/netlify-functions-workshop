@@ -20,3 +20,16 @@ FAUNADB_SERVER_SECRET=[Fauna Server Secret]
 
 - Create collection `todos` in associated fauna db
 - Send JSON POST to `/.netlify/functions/fauna`
+
+## Firebase
+
+Environment variables:
+
+```
+FIREBASE_DATABASE_URL
+FIREBASE_PROJECT_ID
+FIREBASE_CLIENT_EMAIL
+FIREBASE_PRIVATE_KEY
+```
+
+This uses the FireStore and not the Real Time database.
