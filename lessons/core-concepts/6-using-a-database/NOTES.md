@@ -33,3 +33,17 @@ FIREBASE_PRIVATE_KEY
 ```
 
 This uses the FireStore and not the Real Time database.
+
+## Google Sheets
+
+- Create a Service Account
+- Share the Spreadsheet with the service account email
+- Base64-encode the service account credentials to store in env var:
+
+```js
+// Encoding
+Buffer.from(JSON.stringify(require('./credentials.json'))).toString('base64')
+
+// Decoding
+JSON.parse(Buffer.from(base64String, 'base64').toString('ascii'))
+```
