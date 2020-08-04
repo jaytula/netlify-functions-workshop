@@ -11,8 +11,8 @@ function connectToDatabase (uri) {
     return Promise.resolve(cachedDb)
   }
 
-  return MongoClient.connect(uri).then((db) => {
-    cachedDb = db
+  return MongoClient.connect(uri, {useUnifiedTopology: true, useNewUrlParser: true}).then((client) => {
+    cachedDb = client.db('practice');
     return cachedDb
   })
 }

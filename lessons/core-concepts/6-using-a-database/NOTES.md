@@ -47,3 +47,9 @@ Buffer.from(JSON.stringify(require('./credentials.json'))).toString('base64')
 // Decoding
 JSON.parse(Buffer.from(base64String, 'base64').toString('ascii'))
 ```
+
+## Mongo (Mongodb Atlas)
+
+- Ensure Whitelist has IP
+- Specify `MONGODB_URI` environment variable
+- Set database with `client.db`
