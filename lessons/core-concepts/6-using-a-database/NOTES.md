@@ -53,3 +53,18 @@ JSON.parse(Buffer.from(base64String, 'base64').toString('ascii'))
 - Ensure Whitelist has IP
 - Specify `MONGODB_URI` environment variable
 - Set database with `client.db`
+
+## Postgres (ElephantSQL)
+
+- Create an account at ElephantSQL
+- Provide env variables
+
+```
+PGUSER
+PGPASSWORD
+PGHOST
+PGDATABASE
+PGPORT
+```
+
+- Manually create `notes` table with `id`, `title`, and `created_at`
