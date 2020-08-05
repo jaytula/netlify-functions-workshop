@@ -68,3 +68,11 @@ PGPORT
 ```
 
 - Manually create `notes` table with `id`, `title`, and `created_at`
+
+## S3
+
+- Go to AWS Console
+- Search for IAM https://console.aws.amazon.com/iam
+- Create individual IAM user
+- Place credentials in `.env`: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` per
+https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/loading-node-credentials-environment.html

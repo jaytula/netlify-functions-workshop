@@ -1,49 +1,38 @@
-const DB = require('s3-db')
-const { S3_BUCKET_NAME } = process.env
-const db = new DB()
+/*
+ * Copyright 2013. Amazon Web Services, Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
 
-var cachedDb
+// Load the SDK and UUID
+var AWS = require("aws-sdk");
+var uuid = require("node-uuid");
 
-function connectToDatabase(bucketName) {
-  console.log('=> connect to database')
+// Create an S3 client
+var s3 = new AWS.S3();
 
-  if (cachedDb) {
-    console.log('=> using cached database instance')
-    return Promise.resolve(cachedDb)
-  }
-
-  return db.getCollection(bucketName).then((db) => {
-    cachedDb = db
-    return cachedDb
-  })
-}
+// Create a bucket and upload something into it
+var bucketName = "node-sdk-sample-" + uuid.v4();
+var keyName = "hello_world.txt";
 
 exports.handler = async (event, context) => {
-  try {
-    const data = JSON.parse(event.body)
+  await s3.createBucket({ Bucket: bucketName }).promise();
 
-    const collection = await connectToDatabase(S3_BUCKET_NAME)
+  var params = { Bucket: bucketName, Key: keyName, Body: "Hello World!" };
+  await s3.putObject(params).promise();
 
-    /* save person to s3 */
-    const response = await collection.saveDocument({
-      id: 'my-user-stats',
-      boo: true,
-      lol: 'wow'
-    })
-
-    console.log(response)
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
-        message: "Let's become serverless conductors!!!"
-      })
-    }
-  } catch (e) {
-    console.log(e)
-    return {
-      statusCode: 500,
-      body: e.mssage
-    }
-  }
-}
+  return {
+    statusCode: 200,
+    body: "Look for bucket " + bucketName,
+  };
+};
