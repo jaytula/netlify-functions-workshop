@@ -76,3 +76,16 @@ PGPORT
 - Create individual IAM user
 - Place credentials in `.env`: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` per
 https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/loading-node-credentials-environment.html
+
+## Dynamo
+
+Specify env vars:
+
+```
+MY_AWS_ACCESS_KEY_ID,
+MY_AWS_SECRET_ACCESS_KEY,
+MY_AWS_REGION,
+MY_AWS_TABLE_NAME
+```
+
+- Send JSON POST with fields `id` and `name`
