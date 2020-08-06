@@ -34,6 +34,12 @@ We will be creating 2 lambda functions.
 
     This will scaffold out a Fauna DB noSQL database for us to use in our functions.
 
+    Also, wire up with Fauna:
+
+    ```bash
+    netlify addons:auth fauna
+    ```
+
 3. Create the fauna schema!
 
     In order to use our fauna database we need to setup a data schema for it to use.
