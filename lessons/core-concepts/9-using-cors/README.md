@@ -30,7 +30,7 @@ This lesson will walk through creating an http function triggered by a `POST` re
     You should now be able to make ajax requests from other sites to ping this function
 
     ```js
-    fetch(`https://your-site-url.com/.netlify/functions/using-cors`, {
+    fetch(`http://localhost:8888/.netlify/functions/using-cors`, {
       method: 'POST',
     }).then(response => {
       return response.json()

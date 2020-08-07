@@ -5,6 +5,10 @@
 exports.handler = async (event, context) => {
   return {
     statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": 'https://www.youtube.com',
+      "Access-Control-Allow-Credentials": true
+    },
     body: JSON.stringify({
       message: 'Hi ⊂◉‿◉つ',
       event: event,
