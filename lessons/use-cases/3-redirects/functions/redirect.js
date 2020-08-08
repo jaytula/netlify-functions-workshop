@@ -8,7 +8,11 @@ exports.handler = async (event, context) => {
       Set the `headers['Cache-Control']` to `no-cache`. This will disable caching if we are using dynamic querystrings/paths to send people to different locations.
   */
   return {
-    headers: {},
+    statusCode: 302,
+    headers: {
+      Location: 'https://www.slashdot.org',
+      'Cache-Control': 'no-cache'
+    },
     body: JSON.stringify({})
   }
 }
