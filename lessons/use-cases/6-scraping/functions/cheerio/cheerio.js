@@ -2,17 +2,17 @@ const request = require('axios')
 const cheerio = require('cheerio')
 
 exports.handler = async (event, context) => {
-  const url = 'https://whatever.com'
+  const url = 'https://slashdot.org'
   try {
     const { data } = await request(url)
     const $ = cheerio.load(data)
     /* queryDOM */
-    const items = $('#idXyz li')
-    console.log('items', items)
+    const items = $('#firehoselist article h2.story .story-title > a')
+    // console.log('items', items)
     const itemsText = items.map((i, el) => {
-      return $(el).text().trim()
+      return $(el).attr('href').trim()
     })
-    console.log('itemsText', items)
+    console.log('itemsText', itemsText.toArray())
     return {
       statusCode: 200,
       body: JSON.stringify({
