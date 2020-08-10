@@ -7,6 +7,7 @@ exports.handler = async (event, context) => {
   try {
     response = await fetch(API_ENDPOINT)
     // handle response
+    response = await response.json();
   } catch (err) {
     return {
       statusCode: err.statusCode || 500,
