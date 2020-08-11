@@ -1,51 +1,26 @@
-const sendGrid = require('@sendgrid/client')
 const { SENDGRID_API_KEY, SENDGRID_SENDER_EMAIL, SENDGRID_SENDER_NAME } = process.env
 
+const sgMail = require('@sendgrid/mail');
+
 /* initialize sendgrid client */
-sendGrid.setApiKey(SENDGRID_API_KEY)
+sgMail.setApiKey(SENDGRID_API_KEY)
 
 exports.handler = async (event, context) => {
   const body = JSON.parse(event.body)
   const email = body.email
 
-  let response
+  console.log({email})
   try {
-    /* Add email to recicipent list https://bit.ly/2FPVNd3 */
-    await await sendGrid.request({
-      method: 'POST',
-      url: '/v3/contactdb/recipients',
-      body: [{
-        email: email
-      }]
-    })
+    const msg = {
+      to: email,
+      from: SENDGRID_SENDER_EMAIL,
+      subject: 'Sending with Twilio SendGrid is Fun',
+      text: 'and easy to do anywhere, even with Node.js',
+      html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    };
+    const sendResult = await sgMail.send(msg);
+    console.log({sendResult});
 
-    /* Send email to recicipent https://bit.ly/2UjC5AR */
-    response = await sendGrid.request({
-      method: 'POST',
-      url: '/v3/mail/send',
-      body: {
-        from: {
-          email: SENDGRID_SENDER_EMAIL,
-          name: SENDGRID_SENDER_NAME
-        },
-        reply_to: {
-          email: SENDGRID_SENDER_EMAIL
-        },
-        personalizations: [{
-          to: [{
-            email: email
-          }],
-          subject: 'Hello, World!'
-        }],
-        content: [
-          {
-            type: 'text/plain',
-            value: 'Hello, World!'
-          }
-        ]
-        // template_id: 'YourTemplateId'
-      }
-    })
   } catch (e) {
     console.log('Error', e)
     return {
@@ -57,7 +32,7 @@ exports.handler = async (event, context) => {
   }
 
   return {
-    statusCode: response.statusCode,
+    statusCode: 200,
     body: JSON.stringify({
       message: `${email} added`
     })

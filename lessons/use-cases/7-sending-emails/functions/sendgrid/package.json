@@ -5,6 +5,7 @@
   "author": "David Wells",
   "license": "MIT",
   "dependencies": {
-    "@sendgrid/client": "^6.3.0"
+    "@sendgrid/client": "^6.3.0",
+    "@sendgrid/mail": "^7.2.3"
   }
 }
