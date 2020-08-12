@@ -1,0 +1,14 @@
+{
+  "name": "create-payment-intent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "create-payment-intent.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "stripe": "^8.84.0"
+  }
+}
