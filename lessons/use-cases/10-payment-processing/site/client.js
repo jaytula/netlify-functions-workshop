@@ -6,7 +6,7 @@ var purchase = {
 };
 // Disable the button until we have Stripe set up on the page
 document.querySelector("button").disabled = true;
-fetch("/create-payment-intent", {
+fetch("/.netlify/functions/create-payment-intent", {
   method: "POST",
   headers: {
     "Content-Type": "application/json"
